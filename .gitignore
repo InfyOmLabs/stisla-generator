@@ -13,3 +13,5 @@ npm-debug.log
 yarn-error.log
 /composer.lock
 /.idea
+public/mix-manifest.json
+package-lock.json
