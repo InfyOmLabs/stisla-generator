@@ -12,12 +12,14 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "infyomlabs/laravel-generator": "dev-infyom-dev",
+        "infyomlabs/laravel-ui-stisla": "^3.0",
+        "infyomlabs/stisla-templates": "^1.0",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "infyomlabs/laravel-generator": "8.0.x-dev",
-        "infyomlabs/laravel-ui-stisla":"^3.0",
         "laravelcollective/html": "^6.2",
-        "infyomlabs/stisla-templates": "^1.0"
+        "tightenco/ziggy": "^1.4",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

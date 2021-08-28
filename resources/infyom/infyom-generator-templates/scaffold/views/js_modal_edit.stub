@@ -1,0 +1,27 @@
+<div  id="edit$MODEL_NAME_HUMAN$Modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="$MODEL_NAME_HUMAN$Header">@lang('crud.edit') @lang('models/$MODEL_NAME_PLURAL_CAMEL$.singular')</h5>
+                <button type="button" aria-label="Close" class="close" data-dismiss="modal">×</button>
+            </div>
+            {{ Form::open(['id'=>"edit$MODEL_NAME_HUMAN$Form"]) }}
+            @csrf
+              {{ Form::hidden('id',null,['id' => '$MODEL_NAME_HUMAN$ID']) }}
+            <div class="modal-body">
+                <div class="alert alert-danger d-none" id="edit$MODEL_NAME_HUMAN$ValidationErrorsBox"></div>
+                <div class="row">
+                    $FIELDS$
+                </div>
+                <div class="text-right">
+                    {{ Form::button(__('Save'), ['type'=>'submit','class' => 'btn btn-primary','id'=>'$MODEL_NAME_HUMAN$BtnSave','data-loading-text'=>"<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                    <button type="button" id="$MODEL_NAME_HUMAN$BtnCancel" class="btn btn-light ml-1"
+                            data-dismiss="modal">{{ __('Cancel') }}</button>
+                </div>
+            </div>
+            {{ Form::close() }}
+        </div>
+    </div>
+</div>
+

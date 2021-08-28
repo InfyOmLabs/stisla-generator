@@ -1,0 +1,23 @@
+@extends('layouts.app')
+@section('title')
+    $MODEL_NAME_HUMAN$ Details 
+@endsection
+@section('content')
+    <section class="section">
+        <div class="section-header">
+        <h1>$MODEL_NAME_HUMAN$ Details</h1>
+        <div class="section-header-breadcrumb">
+            <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}"
+                 class="btn btn-primary form-btn float-right">Back</a>
+        </div>
+      </div>
+   @include('stisla-templates::common.errors')
+    <div class="section-body">
+           <div class="card">
+            <div class="card-body">
+                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
+            </div>
+            </div>
+    </div>
+    </section>
+@endsection
