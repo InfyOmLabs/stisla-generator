@@ -1,0 +1,121 @@
+'use strict';
+
+let tableName = '#$MODEL_NAME_PLURAL_CAMEL$Table';
+$(tableName).DataTable({
+    scrollX: true,
+    deferRender: true,
+    scroller: true,
+    processing: true,
+    serverSide: true,
+    'order': [[0, 'asc']],
+    ajax: {
+        url: route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'),
+    },
+    columnDefs: [
+        {
+            'targets': [$ACTION_COLUMN_COUNT$],
+            'orderable': false,
+            'className': 'text-center',
+            'width': '8%',
+        },
+    ],
+    columns: [
+        $JQUERY_FIELDS$
+        {
+            data: function (row) {
+                let data = [
+                    {
+                        'id': row.id,
+                        'editUrl': route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', row.id),
+                    },
+                ];
+
+                return prepareTemplateRender('#$MODEL_NAME_PLURAL_CAMEL$Template',
+                    data);
+            },
+            name: 'id',
+        },
+    ],
+});
+
+$(document).on('click', '#create$MODEL_NAME_HUMAN$', function () {
+    $('#create$MODEL_NAME_HUMAN$Modal').appendTo('body').modal('show');
+});
+    
+$('#create$MODEL_NAME_HUMAN$Modal').on('hidden.bs.modal', function () {
+    resetModalForm('#create$MODEL_NAME_HUMAN$Form', '#create$MODEL_NAME_HUMAN$ValidationErrorsBox');
+});
+
+$('#edit$MODEL_NAME_HUMAN$Modal').on('hidden.bs.modal', function () {
+    resetModalForm('#edit$MODEL_NAME_HUMAN$Form', '#edit$MODEL_NAME_HUMAN$ValidationErrorsBox');
+});
+
+$(document).on('click', '.edit-btn', function (event) {
+    let id = $(event.currentTarget).data('id');
+    renderData(id);
+});
+
+function renderData (id) {
+    $.ajax({
+        url: route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', id),
+        type: 'GET',
+        success: function (result) {
+            $('#$MODEL_NAME_HUMAN$ID').val(result.data.id);
+
+            $JQUERY_EDIT_FIELDS$
+
+            $('#edit$MODEL_NAME_HUMAN$Modal').appendTo('body').modal('show');
+        },
+    });
+}
+
+$(document).on('submit', '#create$MODEL_NAME_HUMAN$Form', function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.store'),
+        type: 'POST',
+        data: $(this).serialize(),
+        success: function (result) {
+            if (result.success) {
+                displaySuccessMessage(result.message);
+                $('#create$MODEL_NAME_HUMAN$Modal').modal('hide');
+
+                $(tableName).DataTable().ajax.reload(null, false);
+            }
+        },
+        error: function (result) {
+            displayErrorMessage(result.responseJSON.message);
+        },
+    });
+});
+
+$(document).on('submit', '#edit$MODEL_NAME_HUMAN$Form', function (e) {
+    e.preventDefault();
+    // let loadingButton = jQuery(this).find('#skillSaveBtn');
+    // loadingButton.button('loading');
+    let formData = $(this).serialize();
+    let id = $('#$MODEL_NAME_HUMAN$ID').val();
+    $.ajax({
+        url: route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.update', id),
+        type: 'PUT',
+        data: formData,
+        success: function (result) {
+            $('#edit$MODEL_NAME_HUMAN$Modal').modal('hide');
+            displaySuccessMessage(result.message);
+
+            $(tableName).DataTable().ajax.reload(null, false);
+        },
+        error: function (result) {
+            displayErrorMessage(result.responseJSON.message);
+        },
+        complete: function () {
+            // loadingButton.button('reset');
+        },
+    });
+});
+
+
+$(document).on('click', '.delete-btn', function (event) {
+    let recordId = $(event.currentTarget).data('id');
+    deleteItem(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', recordId), tableName, '$MODEL_NAME_HUMAN$');
+});

@@ -1,0 +1,4 @@
+<div class="form-group col-sm-12">
+    {{ Form::label('$FIELD_NAME$','$FIELD_NAME_TITLE$:') }}<span class="text-danger">*</span>
+    {{ Form::text('$FIELD_NAME$', null, ['class' => 'form-control', 'placeholder' => '$FIELD_NAME_TITLE$', 'required']) }}
+</div>

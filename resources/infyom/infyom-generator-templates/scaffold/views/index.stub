@@ -1,0 +1,23 @@
+@extends('layouts.app')
+@section('title')
+    $MODEL_NAME_PLURAL_HUMAN$ 
+@endsection
+@section('content')
+    <section class="section">
+        <div class="section-header">
+            <h1>$MODEL_NAME_PLURAL_HUMAN$</h1>
+            <div class="section-header-breadcrumb">
+                <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create')}}" class="btn btn-primary form-btn">$MODEL_NAME_HUMAN$ <i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+    <div class="section-body">
+       <div class="card">
+            <div class="card-body">
+                @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
+            </div>
+       </div>
+   </div>
+    $PAGINATE$
+    </section>
+@endsection
+

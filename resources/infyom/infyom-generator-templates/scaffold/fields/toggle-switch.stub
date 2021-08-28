@@ -1,0 +1,9 @@
+<!-- 'bootstrap / Toggle Switch $FIELD_NAME_TITLE$ Field' -->
+<div class="form-group col-xl-3 col-md-3 col-sm-12">
+    <label>$FIELD_NAME$</label>
+    <label class="custom-switch pl-0 col-12">
+        <input type="checkbox" name="$FIELD_NAME$" class="custom-switch-input"
+               id="$FIELD_NAME$" value="1">
+        <span class="custom-switch-indicator"></span>
+    </label>
+</div>

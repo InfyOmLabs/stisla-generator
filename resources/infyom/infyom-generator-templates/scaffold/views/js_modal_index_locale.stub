@@ -1,0 +1,41 @@
+@extends('layouts.app')
+@section('title')
+    $MODEL_NAME_PLURAL_HUMAN$
+@endsection
+@section('css')
+    <link rel="stylesheet" href="{{asset('assets/css/jquery.dataTables.min.css')}}" type="text/css">
+@endsection
+@section('content')
+    <section class="section">
+        <div class="section-header ml-0 mr-0">
+            <h3 class="page__heading">$MODEL_NAME_PLURAL_HUMAN$</h3>
+            <div class="section-header-breadcrumb">
+                <a href="#" class="btn btn-primary form-btn" id="create$MODEL_NAME_HUMAN$">@lang('crud.add_new')
+                    <i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                           @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.templates.templates')
+
+           @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create-modal')
+           @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit-modal')
+        </div>
+    </section>
+@endsection
+@section('page_js')
+   <script>
+           let recordsURL = "{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}";
+    </script>
+    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/custom/custom-datatable.js')}}"></script>
+    <script src="{{mix('assets/js/$TABLE_NAME$/$TABLE_NAME$.js')}}"></script>
+@endsection

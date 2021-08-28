@@ -1,0 +1,11 @@
+<script id="$MODEL_NAME_PLURAL_CAMEL$Template" type="text/x-jsrender">
+<a title="Edit" class="btn mt-1 mb-1 btn-warning action-btn edit-btn" href="javascript:void(0)"  data-id="{{:id}}">
+            <span class="btn-inner--icon"><i class="fa fa-edit"></i></span>
+   </a>
+   <a title="Delete" class="btn btn-danger action-btn delete-btn" data-id="{{:id}}" href="#">
+           <span class="btn-inner--icon"> <i class="fa fa-trash"></i></span>
+   </a>
+
+</script>
+
+
