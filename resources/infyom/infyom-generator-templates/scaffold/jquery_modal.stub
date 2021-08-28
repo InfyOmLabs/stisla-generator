@@ -65,7 +65,7 @@ function renderData (id) {
             $('#editName').val(result.data.name);
             $('#editTitle').val(result.data.title);
 
-            $('#edit$MODEL_NAME_HUMAN$Modal').modal('show');
+            $('#edit$MODEL_NAME_HUMAN$Modal').appendTo('body').modal('show');
         },
     });
 }

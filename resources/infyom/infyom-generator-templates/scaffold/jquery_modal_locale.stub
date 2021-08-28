@@ -64,7 +64,7 @@ function renderData (id) {
 
             $JQUERY_EDIT_FIELDS$
 
-            $('#edit$MODEL_NAME_HUMAN$Modal').modal('show');
+            $('#edit$MODEL_NAME_HUMAN$Modal').appendTo('body').modal('show');
         },
     });
 }
