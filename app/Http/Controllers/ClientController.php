@@ -13,7 +13,11 @@ use Response;
 
 use App\Exports\UsersExport;
 use App\Imports\ClientsImport;
+use App\Models\Client;
+
 use Maatwebsite\Excel\Facades\Excel;
+
+use Yajra\DataTables\DataTables;
 
 class ClientController extends AppBaseController
 {
@@ -34,10 +38,19 @@ class ClientController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $clients = $this->clientRepository->all();
+        // $clients = $this->clientRepository->all();
 
-        return view('clients.index')
-            ->with('clients', $clients);
+        // return view('clients.index')
+        //     ->with('clients', $clients);
+
+        if($request->ajax()){
+            $data = Client::all();
+            
+            return DataTables::of($data)->addIndexColumn()
+                                        ->make(true);
+        }
+
+        return view('clients.index');
     }
 
     /**

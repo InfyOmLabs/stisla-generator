@@ -5,7 +5,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>@lang('models/clients.plural')   ({{$clients->count()}})</h1>
+            <h1>@lang('models/clients.plural') </h1>
             <div class="section-header-breadcrumb">
                 <a href="{{ route('clients.create')}}" class="btn btn-primary form-btn">@lang('crud.add_new')<i class="fas fa-plus"></i></a>
                 <a href="{{ route('clients.export')}}" class="mx-2 btn btn-primary form-btn">@lang('crud.export')<i class="fas fa-file-export"></i></a>
@@ -58,3 +58,32 @@
 
 
 
+@section('scripts')
+    <script>
+      $(document).ready( function () {
+    var table = $('#clients').DataTable({
+      proccessing: true,
+      serverSide:true,
+      ajax:"{{route('clients.index')}}",
+      columns:[
+        
+         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+         {data: 'username', name: 'username',
+          "render": function(data, type, row, meta){
+          if(type === 'display'){
+              data = '<a href="https://reportpanel.carnival.com.bd/partnercrm/user_details.php?carnivalid=' + row.username + '" target="_blank">' + data + '</a>';
+          }
+          return data;
+        }},
+         { data: 'name', name: 'name'},
+          {data: 'contact', name: 'contact'},
+  
+          {data: 'address', name: 'address'},
+          {data: 'package', name: 'package'},
+   
+        
+      ]
+    });
+    } );
+    </script>
+@endsection
