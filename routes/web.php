@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,10 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+
+
+
+Route::resource('clients', ClientController::class);
+Route::get('client/export/', [ClientController::class, 'export'])->name('clients.export');
+Route::post('client/import/', [ClientController::class, 'import'])->name('clients.import');
