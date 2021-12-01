@@ -8,6 +8,7 @@
                 <th>@lang('models/clients.fields.contact')</th>
                 <th>@lang('models/clients.fields.address')</th>
                 <th>@lang('models/clients.fields.package')</th>
+                <th>action</th>
      
         {{-- <th>@lang('models/clients.fields.password')</th>
         <th>@lang('models/clients.fields.Onu_mac')</th>

@@ -10,7 +10,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-
+use App\Http\Controllers\Form;
 use App\Exports\UsersExport;
 use App\Imports\ClientsImport;
 use App\Models\Client;
@@ -47,7 +47,16 @@ class ClientController extends AppBaseController
             $data = Client::all();
             
             return DataTables::of($data)->addIndexColumn()
-                                        ->make(true);
+            ->addColumn('action', function($client){
+   
+                 $btn = '<a href="'. route('clients.show', [$client->id]).'" class="btn btn-light action-btn"><i class="fa fa-eye"></i></a>';
+                 $btn = $btn .'<a href="'.route('clients.edit', [$client->id]).'" class="btn btn-warning action-btn edit-btn"><i class="fa fa-edit"></i></a>';
+                 $btn = $btn. ' <a href="'.route('clients.destroy', [$client->id]). '" onclick="return confirm(\'Are you sure?\')"   data-id="'.$client->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteClient"><i class="fa fa-trash"></i></a>';
+
+                 return $btn;
+         })
+         ->rawColumns(['action'])
+         ->make(true);
         }
 
         return view('clients.index');

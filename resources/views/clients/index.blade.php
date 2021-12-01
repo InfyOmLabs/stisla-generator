@@ -61,9 +61,17 @@
 @section('scripts')
     <script>
       $(document).ready( function () {
+        $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
     var table = $('#clients').DataTable({
       proccessing: true,
       serverSide:true,
+      responsive: true,
+          autoWidth: true,
+          searching: true,
       ajax:"{{route('clients.index')}}",
       columns:[
         
@@ -80,10 +88,20 @@
   
           {data: 'address', name: 'address'},
           {data: 'package', name: 'package'},
+          {data: 'action', name: 'action', searchable: false, orderable: false},
    
         
       ]
     });
     } );
+
+    $('body').on('click', '.editClient', function () {
+      var client_id = $(this).data('id');
+      var url = "{{ route('clients.index') }}"  + client_id +'/edit';
+      location.replace(url);
+      $.get("{{ route('clients.index') }}"  + client_id +'/edit', function (data) {
+        alert('ok');
+      })
+   });
     </script>
 @endsection

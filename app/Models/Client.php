@@ -80,5 +80,4 @@ class Client extends Model
         'status' => 'required'
     ];
 
-    
 }
