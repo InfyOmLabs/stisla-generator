@@ -79,4 +79,26 @@
         Already have an account ? <a
                 href="{{ route('login') }}">SignIn</a>
     </div>
+
+    <script>
+        import Cookies from 'js-cookie'
+import { useRegistration } from '@web-auth/webauthn-helper'
+
+const onClick = () => {
+    const token = Cookies.get('XSRF-TOKEN')
+
+    useRegistration({
+        actionUrl: route('fastlogin.create'),
+        optionsUrl: route('fastlogin.create.details'),
+        actionHeader: {
+            'x-xsrf-token': token
+        },
+    }, {
+        'x-xsrf-token': token
+    })().then(() => {
+        // credential has been added
+    })
+}
+
+    </script>
 @endsection

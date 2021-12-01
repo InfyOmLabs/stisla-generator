@@ -12,3 +12,7 @@
     <a href="{{ route('packages.index') }}"><i class="fa fa-edit"></i><span>@lang('models/packages.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('investments*') ? 'active' : '' }}">
+    <a href="{{ route('investments.index') }}"><i class="fa fa-edit"></i><span>@lang('models/investments.plural')</span></a>
+</li>
+

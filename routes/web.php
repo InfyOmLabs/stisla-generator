@@ -32,3 +32,5 @@ Route::post('client/import/', [ClientController::class, 'import'])->name('client
 Route::resource('packages', App\Http\Controllers\PackageController::class);
 
 });
+
+Route::resource('investments', App\Http\Controllers\InvestmentController::class);

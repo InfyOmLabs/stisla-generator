@@ -65,4 +65,28 @@
             </form>
         </div>
     </div>
+
+    <script>
+        import Cookies from 'js-cookie'
+import { useLogin } from '@web-auth/webauthn-helper'
+
+const onClick = () => {
+    const token = Cookies.get('XSRF-TOKEN')
+
+    useLogin({
+        actionUrl: route('fastlogin.login'),
+        optionsUrl: route('fastlogin.login.details'),
+        actionHeader: {
+            'x-xsrf-token': token
+        },
+    }, {
+        'x-xsrf-token': token
+    })().then(() => {
+        // the user has been logged in
+
+        window.location.reload()
+    })
+}
+
+    </script>
 @endsection

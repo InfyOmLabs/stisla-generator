@@ -32,29 +32,35 @@
                                             <tr>
                                                 <th>Package</th>
                                                 <th>Total Clients</th>
+                                                <th>Total Value</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php
                                                 $total = 0;
+                                              //  dd($package)
                                             @endphp
                                             @foreach ($clients_by_package as $client)
                                             
                                             <tr>
                                                 <td>{{$client->package}}</td>
-                                                <td>{{$client->total}}</td>
+                                                <td>{{$client->total}} </td>
+                                                <td>{{$client->total* $package[$client->package]}} Tk.</td>
                                             </tr>
-
+                                                @php
+                                                    $total += $client->total* $package[$client->package];
+                                                @endphp
                                             @endforeach
                                         </tbody>
                                         </table>
                                     </div>
                                 </div></div>
-                                <div class="col-sm-3">{{$total}}</div>
+                                {{-- <div class="col-sm-3">{{$total}}</div> --}}
                                
                             </div>
 
                         </div>
+                        <div class="card-footer"><h4>Estimated Total Value : {{$total}} Tk. / Commission: {{$total*.4}} Tk.</h4></div>
                     </div>
                 </div>
             </div>
