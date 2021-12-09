@@ -49,7 +49,7 @@
 <!-- Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status', __('models/clients.fields.status').':') !!}
-    {!! Form::select('status', ['1' => 'Enable', '0' => 'Disable'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('status', ['Registered' => 'Registered', 'Expired' => 'Expired'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

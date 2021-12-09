@@ -191,7 +191,7 @@ class ClientController extends AppBaseController
     public function import() 
     {
         Excel::import(new ClientsImport, request()->file('clients_file'));
-        
+        Flash::success(__('Import Successfull'));
         return back()->with('success', 'All good!');
     }
 }

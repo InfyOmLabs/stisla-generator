@@ -59,6 +59,7 @@
 
 
 @section('scripts')
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
     <script>
       $(document).ready( function () {
         $.ajaxSetup({
@@ -72,6 +73,19 @@
       responsive: true,
           autoWidth: true,
           searching: true,
+          select: true,
+    dom: 'lBfrtip',
+    buttons: [
+        {
+            extend: 'print',
+            text: 'Print Selected',
+            exportOptions: {
+                modifier: {
+                    selected: true
+                }
+            },
+        },
+    ],
       ajax:"{{route('clients.index')}}",
       columns:[
         
@@ -85,13 +99,23 @@
         }},
          { data: 'name', name: 'name'},
           {data: 'contact', name: 'contact'},
-  
           {data: 'address', name: 'address'},
           {data: 'package', name: 'package'},
+          {data: 'status', name: 'status'},
           {data: 'action', name: 'action', searchable: false, orderable: false},
    
         
-      ]
+      ],
+      columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        } ],
+        select: {
+            style:    'multi',
+            selector: 'td:first-child'
+        },
+        order: [[ 1, 'asc' ]]
     });
     } );
 

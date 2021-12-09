@@ -24,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->string('password');
             $table->string('Onu_mac');
             $table->integer('cable');
-            $table->boolean('status');
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

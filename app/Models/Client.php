@@ -60,7 +60,7 @@ class Client extends Model
         'password' => 'string',
         'Onu_mac' => 'string',
         'cable' => 'integer',
-        'status' => 'boolean'
+        'status' => 'string'
     ];
 
     /**
