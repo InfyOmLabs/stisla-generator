@@ -16,3 +16,11 @@
     <a href="{{ route('investments.index') }}"><i class="fa fa-edit"></i><span>@lang('models/investments.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('hotspotZones*') ? 'active' : '' }}">
+    <a href="{{ route('hotspotZones.index') }}"><i class="fa fa-edit"></i><span>@lang('models/hotspotZones.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('cardSellers*') ? 'active' : '' }}">
+    <a href="{{ route('cardSellers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/cardSellers.plural')</span></a>
+</li>
+

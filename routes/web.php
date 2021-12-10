@@ -34,3 +34,9 @@ Route::resource('packages', App\Http\Controllers\PackageController::class);
 });
 
 Route::resource('investments', App\Http\Controllers\InvestmentController::class);
+
+
+Route::resource('hotspotZones', App\Http\Controllers\HotspotZoneController::class);
+
+
+Route::resource('cardSellers', App\Http\Controllers\CardSellerController::class);
